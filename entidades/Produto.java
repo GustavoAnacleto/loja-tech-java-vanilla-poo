@@ -24,8 +24,8 @@ public class Produto{
 		proximoCodigo += 3;
 		totalProdutosCriados++;
 
-		nome = nomeInit;
-		preco = precoInit;
+		setNome(nomeInit);
+		setPreco(precoInit);
 		quantidadeEstoque = 0;
 	}
 
@@ -34,9 +34,9 @@ public class Produto{
 		proximoCodigo += 3;
 		totalProdutosCriados++;
 
-		nome = nomeInit;
-		preco = precoInit;
-		quantidadeEstoque = quantidadeEstoqueInit;		
+		setNome(nomeInit);
+		setPreco(precoInit);
+		setQuantidadeEstoque(quantidadeEstoqueInit);	
 	}
 
     // Metodos getters
@@ -77,13 +77,12 @@ public class Produto{
 
 	//Regras de negocios da classe.
 
-	public void obterInfo(){
-		System.out.println("Codigo do produto: " + codigo);
-		System.out.println("  Nome do produto: " + nome);
-		System.out.println("            Valor: " + preco);
-		System.out.println("          Estoque: " + quantidadeEstoque);
-		System.out.println("_______________________________________");
-		System.out.println("numero total de produtos criados: " + totalProdutosCriados);
+	public String obterInfo() {
+	    return "Código do produto: " + codigo
+	            + "\nNome do produto: " + nome
+	            + "\nValor: R$ " + preco
+	            + "\nEstoque: " + quantidadeEstoque
+	            + "\n_______________________________________";
 	}
 
 	public void aplicarDesconto(double valor) {
