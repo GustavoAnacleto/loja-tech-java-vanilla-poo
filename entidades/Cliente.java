@@ -54,13 +54,13 @@ public class Cliente{
 
 	public void setNome(String novoNome){
 		if(novoNome != null && !novoNome.trim().isEmpty()){
-			nome = novoNome;
+			nome = novoNome.trim();
 		}
 	}
 
 	public void setCpf(String novoCpf){
 		if(novoCpf != null && !novoCpf.trim().isEmpty()){
-			cpf = novoCpf;
+			cpf = novoCpf.trim();
 		}
 	}
 
