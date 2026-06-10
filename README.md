@@ -49,8 +49,8 @@ loja-tech-java-vanilla-poo/
 
 * [x] Criar o repositório e a estrutura inicial
 * [x] Implementar a classe `Produto`
-* [ ] Implementar a classe `Cliente`
-* [ ] Implementar a classe `Venda`
+* [x] Implementar a classe `Cliente`
+* [x] Implementar a classe `Venda`
 * [ ] Implementar a classe `CalculadoraFinanceira`
 * [ ] Implementar a classe `GerenciadorEstoque`
 * [ ] Implementar a classe `Caixa`
@@ -109,9 +109,132 @@ O atributo `codigo` pertence a cada objeto individualmente, enquanto `proximoCod
 * descontos percentuais devem estar entre 1% e 100%;
 * descontos condicionados ao estoque só são aplicados quando a quantidade mínima é atingida.
 
+## Classe Cliente
+
+A classe `Cliente` representa uma pessoa que pode realizar compras na loja.
+
+Ela possui:
+
+* nome;
+* CPF;
+* saldo de crédito;
+* construtores sobrecarregados;
+* getters e setters com validações;
+* valores padrão para dados não informados;
+* contador estático de clientes criados.
+
+Antes da utilização dos setters nos construtores, os atributos recebem valores padrão. Essa decisão evita que o objeto permaneça com dados nulos quando um valor inválido for informado.
+
+Exemplo:
+
+```text
+nome → Cliente não informado
+CPF → CPF não informado
+saldo de crédito → 0
+```
+
+## Regras aplicadas na classe Cliente
+
+* o nome não pode ser nulo ou vazio;
+* o CPF não pode ser nulo ou vazio;
+* o saldo de crédito não pode ser negativo;
+* valores inválidos não substituem os valores padrão;
+* cada cliente criado aumenta o contador estático da classe.
+
+O contador `totalClientesCriados` pertence à classe `Cliente` e é compartilhado entre todos os objetos.
+
+## Classe Venda
+
+A classe `Venda` representa a relação entre um cliente, um produto e a quantidade comprada.
+
+Ela possui:
+
+* referência para um objeto `Cliente`;
+* referência para um objeto `Produto`;
+* quantidade comprada;
+* valor total;
+* indicação de venda concluída;
+* construtores sobrecarregados;
+* contador estático de vendas concluídas.
+
+Essa classe também pratica o relacionamento entre objetos, pois uma venda utiliza informações existentes nas classes `Cliente` e `Produto`.
+
+## Construtores da classe Venda
+
+Foram criadas três formas de iniciar uma venda:
+
+```text
+Venda()
+```
+
+Cria uma venda vazia.
+
+```text
+Venda(Cliente cliente, Produto produto)
+```
+
+Cria uma venda com cliente e produto, utilizando a quantidade padrão de uma unidade.
+
+```text
+Venda(Cliente cliente, Produto produto, int quantidade)
+```
+
+Cria uma venda completa, recebendo cliente, produto e quantidade.
+
+## Regras aplicadas na classe Venda
+
+Uma venda somente pode ser concluída quando:
+
+* o cliente não for `null`;
+* o produto não for `null`;
+* a quantidade for maior que zero;
+* o produto possuir estoque suficiente;
+* a venda ainda não tiver sido concluída.
+
+Quando a venda é concluída:
+
+* a quantidade vendida é removida do estoque;
+* o valor total é calculado;
+* o atributo `concluida` recebe `true`;
+* o contador de vendas concluídas é incrementado.
+
+A verificação do atributo `concluida` evita que a mesma venda seja processada mais de uma vez. Sem essa validação, chamadas repetidas poderiam diminuir o estoque e aumentar o contador incorretamente.
+
+## Cálculo do valor total
+
+O valor total é calculado multiplicando o preço unitário do produto pela quantidade comprada:
+
+```text
+valor total = preço do produto × quantidade
+```
+
+O cálculo pertence à classe `Venda`, pois representa uma informação da operação de venda, e não uma responsabilidade individual do produto.
+
+## Método obterInfo
+
+O método `obterInfo()` reúne os principais dados da venda em uma única `String`.
+
+Ele facilita a exibição das informações na classe principal, evitando que cada atributo precise ser acessado e exibido separadamente.
+
+O método também verifica se o cliente ou o produto são `null`, evitando erros ao apresentar uma venda ainda incompleta.
+
+## Contador de vendas concluídas
+
+O atributo `totalVendasConcluidas` é estático porque representa uma informação compartilhada por todas as vendas.
+
+Ele somente é incrementado quando uma venda é concluída com sucesso.
+
+O método `getTotalVendasConcluidas()` também é estático, permitindo consultar o contador diretamente pela classe:
+
+```java
+Venda.getTotalVendasConcluidas();
+```
+
 ## Status atual
 
-A classe `Produto` está concluída. O próximo passo é implementar a classe `Cliente`.
+As classes `Produto`, `Cliente` e `Venda` estão implementadas.
+
+O próximo passo do projeto é desenvolver a classe `CalculadoraFinanceira`, localizada no pacote `util`.
 
 ## Autor
 
