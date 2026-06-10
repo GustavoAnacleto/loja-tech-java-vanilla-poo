@@ -44,13 +44,13 @@ public class Produto{
 	public int getCodigo(){
 		return codigo;
 	}
-	public getNome(){
+	public String getNome(){
 		return nome;
 	}
-	public getPreco(){
+	public double getPreco(){
 		return preco;
 	}
-	public getQuantidadeEstoque(){
+	public int getQuantidadeEstoque(){
 		return quantidadeEstoque;
 	}
 	public static int getTotalProdutosCriados(){
@@ -60,17 +60,17 @@ public class Produto{
 	//Metodos Setters
 
 	public void setNome(String novoNome){
-		if(nome != null && !nome.trim().isEmpty()){
+		if(novoNome != null && !novoNome.trim().isEmpty()){
 			nome = novoNome;
 		}
 	}
 	public void setPreco(double novoPreco){
-		if(preco >= 0){
+		if(novoPreco >= 0){
 			preco = novoPreco;
 		}
 	}
 	public void setQuantidadeEstoque(int novaQuantidadeEstoque){
-		if(quantidadeEstoque >= 0){
+		if(novaQuantidadeEstoque >= 0){
 			quantidadeEstoque = novaQuantidadeEstoque;
 		}
 	} 
@@ -78,12 +78,12 @@ public class Produto{
 	//Regras de negocios da classe.
 
 	public void obterInfo(){
-		System.out.printLn("Codigo do produto: " + codigo);
-		System.out.printLn("  Nome do produto: " + nome);
-		System.out.printLn("            Valor: " + preco);
-		System.out.printLn("          Estoque: " + quantidadeEstoque);
-		System.out.printLn("_______________________________________");
-		System.out.printLn("numero total de produtos criados: " + totalProdutosCriados);
+		System.out.println("Codigo do produto: " + codigo);
+		System.out.println("  Nome do produto: " + nome);
+		System.out.println("            Valor: " + preco);
+		System.out.println("          Estoque: " + quantidadeEstoque);
+		System.out.println("_______________________________________");
+		System.out.println("numero total de produtos criados: " + totalProdutosCriados);
 	}
 
 	public void aplicarDesconto(double valor) {
