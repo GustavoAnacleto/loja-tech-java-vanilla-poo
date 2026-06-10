@@ -3,7 +3,7 @@ package entidades;
 public class Produto{
 
 	private int codigo;
-	private String nome;
+	private String nome = "Produto não informado";
 	private double preco;
 	private int quantidadeEstoque;
 	private static int totalProdutosCriados = 0;
