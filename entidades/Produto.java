@@ -112,18 +112,14 @@ public class Produto{
 	}
 
 	public void aplicarDesconto(int porcentagem, int quantidadeMinimaEstoque) {
-
 	    if (quantidadeMinimaEstoque <= 0) {
 	        System.out.println("A quantidade mínima deve ser maior que zero.");
 	        return;
 	    }
-
 	    if (quantidadeEstoque < quantidadeMinimaEstoque) {
 	        System.out.println("Estoque insuficiente para aplicar este desconto.");
 	        return;
 	    }
-
 	    aplicarDesconto(porcentagem);
 	}		
-
 }
