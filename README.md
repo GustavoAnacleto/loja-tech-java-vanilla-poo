@@ -51,8 +51,8 @@ loja-tech-java-vanilla-poo/
 * [x] Implementar a classe `Produto`
 * [x] Implementar a classe `Cliente`
 * [x] Implementar a classe `Venda`
-* [ ] Implementar a classe `CalculadoraFinanceira`
-* [ ] Implementar a classe `GerenciadorEstoque`
+* [x] Implementar a classe `CalculadoraFinanceira`
+* [x] Implementar a classe `GerenciadorEstoque`
 * [ ] Implementar a classe `Caixa`
 * [ ] Criar a demonstração dos modificadores de acesso
 * [ ] Criar a classe principal `Aplicacao`
@@ -230,11 +230,210 @@ O método `getTotalVendasConcluidas()` também é estático, permitindo consulta
 Venda.getTotalVendasConcluidas();
 ```
 
+## Classe GerenciadorEstoque
+
+A classe `GerenciadorEstoque` foi criada no pacote `servicos`.
+
+Ela não representa uma entidade da loja, mas sim um serviço responsável por realizar operações sobre o estoque de um produto.
+
+Ela possui métodos para:
+
+* adicionar unidades ao estoque;
+* remover unidades do estoque;
+* impedir que a remoção gere estoque negativo;
+* demonstrar a passagem de tipos primitivos por valor.
+
+Exemplo de responsabilidade da classe:
+
+```text
+Produto → guarda os dados do produto
+GerenciadorEstoque → executa operações sobre o estoque do produto
+```
+
+Essa separação ajuda a praticar a ideia de que nem toda classe precisa representar uma entidade. Algumas classes podem representar serviços ou operações.
+
+## Passagem por valor em Java
+
+O método `tentarAlterarEstoque(int estoque)` foi mantido com finalidade didática.
+
+Ele demonstra que variáveis primitivas em Java são passadas por valor.
+
+Isso significa que alterar o parâmetro dentro do método não altera a variável original fora dele.
+
+Exemplo conceitual:
+
+```java
+public void tentarAlterarEstoque(int estoque) {
+    estoque += 100;
+}
+```
+
+Esse método altera apenas a cópia local da variável `estoque`.
+
+Para alterar o estoque real de um produto, é necessário acessar o objeto `Produto` e usar seus métodos, como ocorre em `adicionarEstoque` e `removerEstoque`.
+
+## Classe CalculadoraFinanceira
+
+A classe `CalculadoraFinanceira` foi criada no pacote `util`.
+
+Ela é uma classe utilitária, ou seja, não representa uma entidade da loja. Sua função é concentrar operações financeiras simples que podem ser reutilizadas por outras partes do projeto.
+
+Todos os métodos foram definidos como `static`, permitindo que sejam chamados diretamente pela classe, sem necessidade de criar um objeto `CalculadoraFinanceira`.
+
+Exemplo:
+
+```java
+CalculadoraFinanceira.aplicarDesconto(100.0, 10);
+```
+
+Essa decisão é coerente com o objetivo da classe, pois ela não precisa guardar estado próprio. Ela apenas recebe valores, realiza cálculos e devolve resultados.
+
+## Métodos da classe CalculadoraFinanceira
+
+A classe possui os seguintes métodos:
+
+```java
+public static double aplicarDesconto(double preco, double desconto)
+```
+
+Aplica um desconto em valor fixo sobre o preço informado.
+
+Exemplo conceitual:
+
+```text
+preço 100, desconto 20 → resultado 80
+```
+
+```java
+public static double aplicarDesconto(double preco, int porcentagem)
+```
+
+Aplica um desconto percentual sobre o preço informado.
+
+Exemplo conceitual:
+
+```text
+preço 100, desconto 10% → resultado 90
+```
+
+```java
+public static double aplicarAcrescimo(double preco, int porcentagem)
+```
+
+Aplica um acréscimo percentual sobre o preço informado.
+
+Exemplo conceitual:
+
+```text
+preço 100, acréscimo 10% → resultado 110
+```
+
+```java
+public static double calcularTotal(double preco, int quantidade)
+```
+
+Calcula o valor total multiplicando o preço pela quantidade.
+
+Exemplo conceitual:
+
+```text
+preço 50, quantidade 3 → resultado 150
+```
+
+```java
+public static void exibirValor(String descricao, double valor)
+```
+
+Exibe um valor formatado no console com duas casas decimais.
+
+Exemplo de saída:
+
+```text
+Total da compra: R$ 150,00
+```
+
+## Validações aplicadas na CalculadoraFinanceira
+
+A classe possui validações simples para evitar cálculos com valores inadequados:
+
+* preço negativo é tratado como zero;
+* desconto negativo é tratado como zero;
+* porcentagem negativa é tratada como zero;
+* porcentagem acima de 100 é limitada a 100.
+
+Essas validações tornam os métodos mais seguros para os testes iniciais do projeto.
+
+## Observação didática sobre a CalculadoraFinanceira
+
+A classe `CalculadoraFinanceira` ajuda a praticar o uso de métodos estáticos em Java.
+
+Diferente de classes como `Produto`, `Cliente` e `Venda`, ela não precisa ter atributos de instância.
+
+Isso reforça a diferença entre:
+
+```text
+Entidade → representa algo do domínio do sistema
+Utilitário → oferece operações auxiliares
+Serviço → executa ações sobre objetos
+```
+
+Neste projeto:
+
+```text
+Produto → entidade
+Cliente → entidade
+Venda → entidade
+GerenciadorEstoque → serviço
+CalculadoraFinanceira → utilitário
+```
+
+## Melhorias futuras na CalculadoraFinanceira
+
+Algumas melhorias podem ser aplicadas futuramente:
+
+* impedir que desconto fixo maior que o preço gere valor negativo;
+* validar quantidade negativa no método `calcularTotal`;
+* padronizar melhor as regras de arredondamento;
+* usar a classe em conjunto com `Venda` ou `Caixa` quando o fluxo principal for montado.
+
+Essas melhorias foram registradas como evolução possível, sem adicionar complexidade antes do momento certo do curso.
+
+## Aprendizados consolidados
+
+Até este ponto, o projeto já ajudou a consolidar:
+
+* criação de classes em pacotes diferentes;
+* uso de `import`;
+* encapsulamento com atributos privados;
+* validações em setters;
+* uso de construtores sobrecarregados;
+* uso de métodos estáticos;
+* uso de atributos estáticos;
+* relacionamento entre objetos;
+* separação básica de responsabilidades;
+* diferença entre entidade, serviço e classe utilitária;
+* passagem de valores primitivos e objetos como parâmetros;
+* cálculo de valores com métodos reutilizáveis.
+
 ## Status atual
 
-As classes `Produto`, `Cliente` e `Venda` estão implementadas.
+As classes `Produto`, `Cliente`, `Venda`, `GerenciadorEstoque` e `CalculadoraFinanceira` estão implementadas.
 
-O próximo passo do projeto é desenvolver a classe `CalculadoraFinanceira`, localizada no pacote `util`.
+O próximo passo do projeto é desenvolver a classe `Caixa`, localizada no pacote `servicos`.
+
+Depois disso, o projeto deve avançar para a classe principal `Aplicacao`, onde o fluxo completo da loja será testado.
+
+## Próximos passos
+
+* implementar a classe `Caixa`;
+* criar exemplos de uso na classe `Aplicacao`;
+* testar criação de produtos;
+* testar criação de clientes;
+* testar conclusão de vendas;
+* testar alteração de estoque;
+* testar cálculos financeiros;
+* revisar nomes de variáveis, métodos e classes;
+* documentar o resultado final do projeto.
 
 ## Autor
 
