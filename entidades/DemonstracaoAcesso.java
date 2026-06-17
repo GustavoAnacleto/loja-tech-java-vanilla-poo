@@ -1,4 +1,4 @@
-package entidades;entidades
+package entidades;
 
 public class DemonstracaoAcesso{
 
