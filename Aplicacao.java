@@ -12,9 +12,9 @@ public class Aplicacao {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 
-		System.out.println("=====================================");
+		System.out.println("==============================================================================");
 		System.out.println("Testes da class Produto");
-		System.out.println("=====================================");
+		System.out.println("==============================================================================");
 
 		System.out.println("\n--- Teste 1: Construtores ---");
 
@@ -198,6 +198,131 @@ public class Aplicacao {
 
 		pausar(scanner);
 		limparTela();
+
+
+		System.out.println("==============================================================================");
+		System.out.println("Testes da classe Cliente");
+		System.out.println("==============================================================================");
+
+
+		System.out.println("\n--- Teste 13: Construtores de cliente ---");
+
+		Cliente clienteA = new Cliente();
+		Cliente clienteB = new Cliente("Gustavo");
+		Cliente clienteC = new Cliente("Maria", "123.456.789-00", 5000.00);
+
+		System.out.println(clienteA.obterInfo());
+		System.out.println(clienteB.obterInfo());
+		System.out.println(clienteC.obterInfo());
+
+		System.out.println("\n--- Teste 14: Getters de Cliente ---");
+
+		System.out.println("Nome do cliente c: " + clienteC.getNome());
+		System.out.println("CPF do cliente c: " + clienteC.getCpf());
+		System.out.println("Saldo de crédito do cliente C: R$ " + clienteC.getSaldoCredito());
+
+
+		System.out.println("Total de clientes criados: " + Cliente.getTotalClientesCriados());
+
+
+		System.out.println("\nResumo dos testes 13 e 14:");
+		System.out.println("Neste bloco foram testados os construtores e os getters da classe Cliente.");
+		System.out.println("O cliente A foi criado pelo construtor vazio.");
+		System.out.println("O cliente B foi criado pelo construtor que recebe apenas o nome.");
+		System.out.println("O cliente C foi criado pelo construtor que recebe todos os dados.");
+		System.out.println("Os getters foram usados para acessar os atributos privados de forma segura.");
+		System.out.println("O total de clientes criados pertence como método static da classe cliente, por isso foi acessado com Cliente.getTotalClientesCriados().");
+
+		pausar(scanner);
+		limparTela();
+
+		System.out.println("\n--- Teste 15: Setters com valores válidos ---");
+
+		System.out.println("Clinete A andas das alterações:");
+		System.out.println(clienteA.obterInfo());
+
+		clienteA.setNome("João");
+		clienteA.setCpf("111.222.333.44");
+		clienteA.setSaldoCredito(1000d);
+
+		System.out.println("Cliente A depois das alterações válidas:");
+		System.out.println(clienteA.obterInfo());
+
+		System.out.println("\n--- Teste 16: Setters com valores inválidos ---");
+
+		clienteA.setNome("");
+		clienteA.setCpf("");
+		clienteA.setSaldoCredito(-500d);	
+
+		System.out.println("Cliente A depois das tentativas inválidas:");
+		System.out.println(clienteA.obterInfo());
+
+		System.out.println("\nResumo dos testes 15 e 16:");
+		System.out.println("Neste bloco foram testados os setters da classe Cliente.");
+		System.out.println("Primeiro alteramos o clienteA com valores válidos.");
+		System.out.println("Depois, tentamos alterar o mesmo clienteA com valores inválidos.");
+		System.out.println("Usando os atributos privados exemplificando boas práticas, o acesso foi por meio dos métodos setters.");
+		System.out.println("Os setters protegem o objeto contra dados ruins, como nome vazio e etc assim como exemplificado na classe produto.");
+
+		pausar(scanner);
+		limparTela();		
+
+
+		System.out.println("\n--- Teste 17: Contador static de clientes ---");
+
+		System.out.println("Total de clientes criados até o momento: " + Cliente.getTotalClientesCriados());
+
+		System.out.println("\n--- Teste 18: Criando cliente com Scanner ---");
+
+		System.out.print("Digite o nome do cliente: ");
+		String nomeClienteDigitado = scanner.nextLine();
+
+		System.out.print("Digite o cpf do cliente: ");
+		String cpfClienteDigitado = scanner.nextLine();
+
+		System.out.print("Digite o saldo de crédito do cliente: ");
+		double saldoClienteDigitado = Double.parseDouble(scanner.nextLine().replace(",", "."));		
+
+		Cliente clienteDigitado = new Cliente(nomeClienteDigitado, cpfClienteDigitado, saldoClienteDigitado);
+
+		System.out.println("\nCliente criado com dados digitados pelo usuário:");
+		System.out.println(clienteDigitado.obterInfo());
+
+		System.out.println("Total de clientes criados após o cadastro com Scanne: " + Cliente.getTotalClientesCriados());
+
+		System.out.println("\nResumo dos testes 17 e 18:");
+		System.out.println("No teste 17, foi validado o contador static da classe Cliente.");
+		System.out.println("Esse contador pertence à classe, não a um objeto específico.");
+		System.out.println("No teste 18, foi simulado a criação de um cliente com dados digitados pelo usuário.");
+		System.out.println("Esse teste mostra que o usuário informa os dados , mas quem cria o objeto é o programa.");
+		System.out.println("O clienteDigitado é uma refêrancia para o novo objeto Cliente criado em memória.");
+
+		pausar(scanner);
+		limparTela();	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		scanner.close();
 	}
 
